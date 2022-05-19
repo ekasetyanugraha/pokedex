@@ -7,7 +7,13 @@
         class="mt-4"
       >
         <nuxt-link :to="pokemon.name">
-          <b-card :title="`#${i+1}`" class="text-capitalize">{{ pokemon.name }}</b-card>
+          <b-card
+            :title="`#${i+1}`"
+            :img-src="getOfficialArtwork(i+1)"
+            class="text-capitalize"
+          >
+            {{ pokemon.name }}
+          </b-card>
         </nuxt-link>
       </b-col>
     </b-row>
@@ -16,7 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { URL_BASE_POKEAPI } from '~/config';
+import { URL_BASE_POKEAPI, URL_BASE_OFFICIAL_ARTWORK } from '~/config';
 
 const DEFAULT_LIMIT = 50;
 const SCROLL_BOTTOM_DISTANCE = 50;
@@ -72,6 +78,9 @@ export default Vue.extend({
       } finally {
         this.isLoading = false;
       }
+    },
+    getOfficialArtwork(index: number) {
+      return `${URL_BASE_OFFICIAL_ARTWORK}/${index}.png`;
     },
     onPageScroll()  {
       const { pageYOffset, innerHeight } = global;
