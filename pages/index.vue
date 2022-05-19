@@ -1,11 +1,5 @@
 <template>
   <b-container>
-    <b-row class="mt-4">
-      <b-col>
-        Filter by type:
-        <badges-pokemon-types :types="types" />
-      </b-col>
-    </b-row>
     <b-row cols="4">
       <b-col
         v-for="(pokemon, i) in pokemons"
@@ -29,12 +23,10 @@ export default Vue.extend({
   data: () => ({
     isLoading: false,
     pokemons: [] as any,
-    types: [] as any,
     next: '',
   }),
   created() {
     this.getPokemonList();
-    this.getTypes();
   },
   mounted() {
     this.attachScrollListener();
@@ -43,15 +35,6 @@ export default Vue.extend({
     this.detachScrollListener();
   },
   methods: {
-    async getTypes() {
-      try {
-        const { results } = await this.$axios.$get(`${URL_BASE_POKEAPI}/type`);
-
-        this.types = results;
-      } catch (error) {
-
-      }
-    },
     async getNextPokemonList() {
       if (!this.next || this.isLoading) return;
 
