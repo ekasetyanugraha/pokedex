@@ -1,6 +1,10 @@
 <template>
   <b-container class="p-4">
-    <card-pokemon :pokemon="pokemon" class="mx-auto" style="width: 250px;" />
+    <card-pokemon
+      :pokemon="pokemon"
+      class="mx-auto"
+      style="width: 250px;"
+    />
   </b-container>
 </template>
 

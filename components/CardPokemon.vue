@@ -15,9 +15,10 @@
     <div
       v-for="(stat, i) in pokemon.stats"
       :key="`stat-${i}`"
+      class="mt-3"
     >
       <div>{{ stat.stat.name }}</div>
-      <b-progress :value="stat.base_stat" :max="255" class="mb-3" show-value />
+      <b-progress :value="stat.base_stat" :max="255" show-value />
     </div>
   </b-card>
 </template>
