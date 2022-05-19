@@ -24,7 +24,7 @@
 import Vue from 'vue'
 import { URL_BASE_POKEAPI, URL_BASE_OFFICIAL_ARTWORK } from '~/config';
 
-const DEFAULT_LIMIT = 50;
+const DEFAULT_LIMIT = 48;
 const SCROLL_BOTTOM_DISTANCE = 50;
 
 export default Vue.extend({
