@@ -6,7 +6,7 @@
         :key="pokemon.url"
         class="mt-4"
       >
-        <nuxt-link :to="pokemon.name">
+        <nuxt-link :to="pokemon.name" class="text-decoration-none text-body">
           <b-card
             :title="`#${i+1}`"
             :img-src="getOfficialArtwork(i+1)"
