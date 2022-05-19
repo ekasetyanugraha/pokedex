@@ -4,13 +4,7 @@
     :img-src="pokemon.sprites.front_default"
     class="text-capitalize"
   >
-    <b-badge
-      v-for="type in pokemon.types"
-      :key="type.type.name"
-      class="mr-1"
-    >
-      {{ type.type.name }}
-    </b-badge>
+    <badges-pokemon-types :types="typesExtracted" />
 
     <div
       v-for="(stat, i) in pokemon.stats"
@@ -31,6 +25,11 @@ export default Vue.extend({
     pokemon: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    typesExtracted() {
+      return this.pokemon.types.map(type => type.type);
     },
   },
 })
