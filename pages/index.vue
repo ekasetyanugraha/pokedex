@@ -55,7 +55,7 @@ export default Vue.extend({
 
       this.isLoading = true;
       try {
-        const { next, results } = await this.$axios.$get(`${URL_BASE_POKEAPI}/pokemon`, {
+        const { next, results } = await this.$axios.$get(`${URL_BASE_POKEAPI}/pokemon-species`, {
           params: {
             limit: DEFAULT_LIMIT,
             offset: this.currentOffset,
