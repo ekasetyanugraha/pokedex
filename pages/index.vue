@@ -18,6 +18,9 @@
 import Vue from 'vue'
 import { URL_BASE_POKEAPI } from '~/config';
 
+const DEFAULT_LIMIT = 50;
+const SCROLL_BOTTOM_DISTANCE = 50;
+
 export default Vue.extend({
   name: 'IndexPage',
   data: () => ({
@@ -57,7 +60,7 @@ export default Vue.extend({
       try {
         const { next, results } = await this.$axios.$get(`${URL_BASE_POKEAPI}/pokemon`, {
           params: {
-            limit: 50,
+            limit: DEFAULT_LIMIT,
             offset: 0,
           },
         });
@@ -75,7 +78,7 @@ export default Vue.extend({
       const { offsetTop, offsetHeight } = document.documentElement;
 
       const bottomWindowOffset = pageYOffset + innerHeight;
-      const bottomTabLimit = offsetTop + offsetHeight - 50;
+      const bottomTabLimit = offsetTop + offsetHeight - SCROLL_BOTTOM_DISTANCE;
       const reachedBottom = bottomWindowOffset >= bottomTabLimit;
 
       if (reachedBottom) {
