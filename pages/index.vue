@@ -17,6 +17,11 @@
         </nuxt-link>
       </b-col>
     </b-row>
+    <b-row class="mt-4">
+      <b-col class="text-center">
+        <b-spinner v-if="isLoading" type="grow" />
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
