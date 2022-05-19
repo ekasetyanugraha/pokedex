@@ -29,7 +29,7 @@ export default Vue.extend({
   },
   computed: {
     typesExtracted() {
-      return this.pokemon.types.map(type => type.type);
+      return this.pokemon.types.map((type: { type: any; }) => type.type);
     },
   },
 })
