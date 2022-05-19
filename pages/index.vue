@@ -33,6 +33,7 @@ export default Vue.extend({
     isLoading: false,
     pokemons: [] as any,
     next: '',
+    currentOffset: 0,
   }),
   created() {
     this.getPokemonList();
@@ -44,21 +45,6 @@ export default Vue.extend({
     this.detachScrollListener();
   },
   methods: {
-    async getNextPokemonList() {
-      if (!this.next || this.isLoading) return;
-
-      this.isLoading = true;
-      try {
-        const { next, results } = await this.$axios.$get(this.next);
-
-        this.pokemons = [...this.pokemons, ...results];
-        this.next = next;
-      } catch (error) {
-
-      } finally {
-        this.isLoading = false;
-      }
-    },
     async getPokemonList() {
       if (this.isLoading) return;
 
@@ -67,12 +53,13 @@ export default Vue.extend({
         const { next, results } = await this.$axios.$get(`${URL_BASE_POKEAPI}/pokemon`, {
           params: {
             limit: DEFAULT_LIMIT,
-            offset: 0,
+            offset: this.currentOffset,
           },
         });
 
-        this.pokemons = results;
+        this.pokemons = [...this.pokemons, ...results];
         this.next = next;
+        this.currentOffset += DEFAULT_LIMIT;
       } catch (error) {
 
       } finally {
@@ -91,7 +78,7 @@ export default Vue.extend({
       const reachedBottom = bottomWindowOffset >= bottomTabLimit;
 
       if (reachedBottom) {
-        this.getNextPokemonList();
+        this.getPokemonList();
       }
     },
     attachScrollListener()  {
