@@ -46,8 +46,6 @@ export default Vue.extend({
 
     return {
       params,
-      species,
-      speciesChain,
       pokemonDetails,
     };
   },
